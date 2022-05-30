@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="redirect_form">
+		<form t-att-action="api_url" method="post">
+			<input type="hidden" name="amount" t-att-value="amount" />
+			<input type="hidden" name="currency" t-att-value="currency_code" />
+			<input type="hidden" name="reference" t-att-value="reference" />
+			<input type="hidden" name="return" t-att-value="return_url" />
+			<input type="hidden" name="reference_prefix" t-att-value="reference_prefix" />
+		</form>
+	</template>
+
+
+	<template id="moyasar_inline_form">
+		<t name="moyasar_inline_form" t-name="payment_moyasar.moyasar_inline_form">
+			<head>
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+				<script>
+					var amount=
+					<t t-out='amount'></t>
+					;
+					var reference='
+					<t t-out='str(reference)'></t>
+					';
+					var currency = '
+					<t t-out='currency.name'></t>
+					';
+					var CALLBACK_URL = '
+					<t t-out='CALLBACK_URL'></t>
+					';
+					var AUTHORIZATION = '
+					<t t-out='AUTHORIZATION'></t>
+					';
+				</script>
+				<style>
+				.noClick {
+					pointer-events: none;
+				}				
+				</style>
+			</head>
+
+			<form action="" method="POST" id="pay_form" role="form" class="was-validated noClick">
+				<t t-foreach="cards" t-as="card">
+					<div t-attf-id="out_div_{{card.id}}">
+						<input type="radio" t-attf-id="card_{{card.id}}" t-attf-value="{{card.id}}" name="select_card" class="" />
+						<label class="col-form-label" t-attf-for="card_{{card.id}}">
+							Card ends with **********
+							<t t-out="card.number[12:16]" />
+						</label>
+
+						<div t-attf-id="div_{{card.id}}" class="card px-4" hidden="">
+							<div class="row gx-3">
+								<div class="col-6">
+									<div class="form-group">
+										<p class="text mb-1 pt-2">CVV/CVC</p>
+										<input t-attf-id="cvc_{{card.id}}" class="form-control mb-3 pt-2" type="password" placeholder="***" pattern="\d{3}" title="Must be 3 digits" />
+									</div>
+									<input type="hidden" t-attf-id="person_name_{{card.id}}" t-attf-value="{{card.name}}" />
+									<input type="hidden" t-attf-id="card_number_{{card.id}}" t-attf-value="{{card.number}}" />
+									<input type="hidden" t-attf-id="year_{{card.id}}" t-attf-value="{{card.year}}" />
+									<input type="hidden" t-attf-id="month_{{card.id}}" t-attf-value="{{card.month}}" />
+								</div>
+								<div>
+									<input type="button" name="delete_card_info" value="Delete" class="btn btn-link mb-3"></input>
+								</div>
+							</div>
+						</div>
+					</div>
+				</t>
+
+				<div>
+					<input type="radio" t-attf-id="new_card" t-attf-value="new_card" name="select_card" required="" />
+					<label class="col-form-label" t-attf-for="new_card">New card</label>
+
+					<div id="div_new_card" class="card px-4" hidden="">
+						<div class="row gx-3">
+							<div class="col-6">
+								<div class="d-flex flex-column pt-2">
+									<p class="text mb-1">Person Name</p>
+									<input id="person_name_new_card" class="form-control mb-3" type="text" placeholder="Name" />
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="d-flex flex-column pt-2">
+									<p class="text mb-1">Card Number</p>
+									<input id="card_number_new_card" class="form-control mb-3" type="text" placeholder="1234 5678 9101 1121" pattern="\d{16}" title="Must be 16 digits" />
+								</div>
+							</div>
+							<div class="col-3">
+								<div class="d-flex flex-column">
+									<p class="text mb-1">Year</p>
+									<input id="year_new_card" class="form-control mb-3" type="text" placeholder="YY" pattern="\d{2}" title="Must be 2 digits" />
+								</div>
+							</div>
+							<div class="col-3">
+								<div class="d-flex flex-column">
+									<p class="text mb-1">Month</p>
+									<input id="month_new_card" class="form-control mb-3" type="text" placeholder="MM" pattern="\d{2}" title="Must be 2 digits" />
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="d-flex flex-column">
+									<p class="text mb-1">CVV/CVC</p>
+									<input id="cvc_new_card" class="form-control mb-3 pt-2 " type="password" placeholder="***" pattern="\d{3}" title="Must be 3 digits" />
+								</div>
+							</div>
+							<div class="col-6">
+								<input type="checkbox" id="save_card_info" />
+								<label class="col-form-label" for="save_card_info">Save Card Information</label>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+
+				<div id="validation"></div>
+
+				<div class="col-12 pt-2">
+					<button type="submit" id="new_payment_but" class="btn btn-primary mb-3">
+						<span class="ps-3 no">
+							Pay
+							<t t-out='amount'></t>
+							<t t-out='currency.name'></t>
+						</span>
+					</button>
+				</div>
+			</form>
+		</t>
+	</template>
+	<template id="new_payment_address" name="NEw Payment Address" inherit_id="website_sale.address">
+		<xpath expr="//div[@id='wrap']//div//div[2]//div[2]//form" position="replace">
+		<form action="/shop/address" method="post" class="checkout_autoformat">
+			<div class="form-row">
+				<div t-attf-class="form-group #{error.get('name') and 'o_has_error' or ''} col-lg-12 div_name">
+					<label class="col-form-label" for="name">Name</label>
+					<input type="text" name="name" t-attf-class="form-control #{error.get('name') and 'is-invalid' or ''}" t-att-value="'name' in checkout and checkout['name']" />
+
+					<label class="col-form-label" for="name">Your Location</label>
+
+					
+				</div>
+			</div>
+		</form>
+		<div id="map" style="width:100%;height:400px;"></div>
+		<script type="text/javascript" src="/payment_moyasar/static/src/js/map.js"/>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2gtduZdR-zfHJfGUpTgRgvbHVqq2kW4c&amp;callback=initMap&amp;v=weekly&amp;language=ar&amp;region=SA" defer="1"></script>
+
+	</xpath>
+	</template>
+
+	<template id="footer_custom_id" name="footer_custom_name" inherit_id="website.footer_custom">
+
+		<xpath expr="//div[@id='footer']//section//div//div//div//h5" position="replace">
+			<label class="col-form-label">New City</label>
+		</xpath>
+	</template>
+
+	<template id="moyasar_payment_form" name="Moyasar Payment Form" inherit_id="website_sale.payment" primary="True">
+		<xpath expr="//div[@id='payment_method']/t[1]" position="replace">
+			<t t-call="payment_moyasar.moyasar_inline_form"></t>
+		</xpath>
+	</template>
+</odoo>
