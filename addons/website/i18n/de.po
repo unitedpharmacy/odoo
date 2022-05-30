@@ -9206,7 +9206,7 @@ msgstr ""
 #. module: website
 #: model_terms:ir.ui.view,arch_db:website.show_website_info
 msgid "Technical name:"
-msgstr "Technische Bezeichnung"
+msgstr "Technische Bezeichnung:"
 
 #. module: website
 #: model_terms:ir.ui.view,arch_db:website.s_website_form_options
@@ -9679,6 +9679,12 @@ msgstr "Die Nachricht wurde auf Ihrer Website veröffentlicht!"
 #: model_terms:ir.ui.view,arch_db:website.s_popup_options
 msgid "This page"
 msgstr "Diese Seite"
+
+#. module: website
+#: code:addons/website/models/website_visitor.py:0
+#, python-format
+msgid "This operator is not supported"
+msgstr "Dieser Betreiber wird nicht unterstützt"
 
 #. module: website
 #: model_terms:ir.ui.view,arch_db:website.page_404

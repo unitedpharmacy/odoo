@@ -5,7 +5,6 @@
 # Translators:
 # Ted Wang <feiyuwang2012@gmail.com>, 2021
 # bower Guo <124358678@qq.com>, 2021
-# Martin Trigaux, 2021
 # liAnGjiA <liangjia@qq.com>, 2021
 # 稀饭~~ <wangwhai@qq.com>, 2021
 # 黎伟杰 <674416404@qq.com>, 2021
@@ -14,6 +13,7 @@
 # xu aaron, 2021
 # Benson <Benson.Dr@Gmail.com>, 2022
 # 山西清水欧度(QQ:54773801) <54773801@qq.com>, 2022
+# Martin Trigaux, 2022
 # Jeffery CHEN <jeffery9@gmail.com>, 2022
 # 
 msgid ""
@@ -1009,7 +1009,10 @@ msgid "As soon as possible"
 msgstr "尽快"
 
 #. module: stock
+#. openerp-web
+#: code:addons/stock/static/src/js/report_stock_reception.js:0
 #: model_terms:ir.ui.view,arch_db:stock.report_reception_body
+#, python-format
 msgid "Assign"
 msgstr "分配"
 
@@ -3275,6 +3278,12 @@ msgid "Immediate transfer?"
 msgstr "立即调拨？"
 
 #. module: stock
+#: code:addons/stock/models/stock_quant.py:0
+#, python-format
+msgid "Import"
+msgstr "导入"
+
+#. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_warehouse__in_type_id
 msgid "In Type"
 msgstr "入库类型"
@@ -4577,6 +4586,12 @@ msgid "No stock move found"
 msgstr "没有库存调拨"
 
 #. module: stock
+#: code:addons/stock/models/stock_quant.py:0
+#, python-format
+msgid "No Stock On Hand"
+msgstr ""
+
+#. module: stock
 #: model_terms:ir.actions.act_window,help:stock.action_picking_form
 #: model_terms:ir.actions.act_window,help:stock.action_picking_tree_all
 #: model_terms:ir.actions.act_window,help:stock.action_picking_tree_backorder
@@ -5303,6 +5318,14 @@ msgstr "首选路线"
 #: model:ir.model.fields,help:stock.field_stock_move__route_ids
 msgid "Preferred route"
 msgstr "首选路线"
+
+#. module: stock
+#: code:addons/stock/models/stock_quant.py:0
+#, python-format
+msgid ""
+"Press the CREATE button to define quantity for each product in your stock or"
+" import them from a spreadsheet throughout Favorites"
+msgstr ""
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.view_picking_form
@@ -7656,6 +7679,14 @@ msgid "There's no product move yet"
 msgstr "还没有产品调拨"
 
 #. module: stock
+#: code:addons/stock/models/stock_quant.py:0
+#, python-format
+msgid ""
+"This analysis gives you an overview of the current stock level of your "
+"products."
+msgstr ""
+
+#. module: stock
 #: model:ir.model.fields,help:stock.field_stock_rule__name
 msgid "This field will fill the packing origin and the name of its moves"
 msgstr "此字段将填写挑选源和其调拨的名称"
@@ -7715,7 +7746,7 @@ msgstr "这个位置（如果它是内部的）和它所有的后代，通过typ
 #, python-format
 msgid ""
 "This location's usage cannot be changed to view as it contains products."
-msgstr "该位置的使用情况不能更改为查看，因为其包含产品。"
+msgstr "该位置的使用情况不能更改为视图，因为其包含产品。"
 
 #. module: stock
 #: code:addons/stock/models/stock_move_line.py:0
@@ -8102,7 +8133,10 @@ msgid "USPS Connector"
 msgstr "USPS 连接器"
 
 #. module: stock
+#. openerp-web
+#: code:addons/stock/static/src/js/report_stock_reception.js:0
 #: model_terms:ir.ui.view,arch_db:stock.report_reception_body
+#, python-format
 msgid "Unassign"
 msgstr "取消分配"
 
@@ -8345,22 +8379,22 @@ msgstr "供应商位置"
 #: model:ir.model.fields.selection,name:stock.selection__stock_location__usage__view
 #: model_terms:ir.ui.view,arch_db:stock.stock_picking_type_kanban
 msgid "View"
-msgstr "查看"
+msgstr "视图"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.view_template_property_form
 msgid "View Diagram"
-msgstr "查看简明线路示意图"
+msgstr "视图简明线路示意图"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_warehouse__view_location_id
 msgid "View Location"
-msgstr "视图位置"
+msgstr "查看位置"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.res_config_settings_view_form
 msgid "View and allocate received quantities."
-msgstr "查看和分配收到的数量。"
+msgstr "视图和分配收到的数量。"
 
 #. module: stock
 #: model:ir.model.fields.selection,name:stock.selection__stock_picking__state__confirmed
@@ -8435,7 +8469,7 @@ msgstr "仓库管理"
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_location__warehouse_view_ids
 msgid "Warehouse View"
-msgstr "仓库视图位置"
+msgstr "仓库视图"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_rule__propagate_warehouse_id
@@ -8994,15 +9028,6 @@ msgid "You should update this document to reflect your T&amp;C."
 msgstr "您应该更新此單據以反映您的 T&amp;C."
 
 #. module: stock
-#: code:addons/stock/models/stock_picking.py:0
-#, python-format
-msgid ""
-"You should not use a planned internal transfer to move some products between"
-" two warehouses. Instead, use an immediate internal transfer or the resupply"
-" route."
-msgstr ""
-
-#. module: stock
 #: code:addons/stock/models/stock_warehouse.py:0
 #, python-format
 msgid "You still have ongoing operations for picking types %s in warehouse %s"
@@ -9032,6 +9057,12 @@ msgstr ""
 "在odoo系统可以自动补货，目的是减少人工干预，降低人力成本。在这里你可以找到基于智能化的库存预测的补货建议。\n"
 "            然后您就选择要购买或生产的数量，然后单击启动订单。\n"
 "            为了节省将来的时间，请将规则设置为“automated自动补货”。"
+
+#. module: stock
+#: code:addons/stock/models/stock_quant.py:0
+#, python-format
+msgid "Your stock is currently empty"
+msgstr ""
 
 #. module: stock
 #: model:ir.model.fields.selection,name:stock.selection__product_label_layout__print_format__zpl

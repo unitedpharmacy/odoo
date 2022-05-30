@@ -8,6 +8,8 @@
 # Raymond Vetter, 2021
 # Wolfgang Taferner, 2022
 # Martin Trigaux, 2022
+# Robert Förster <hello@suppliot.eu>, 2022
+# TomTietze <tietze.development@web.de>, 2022
 # Friederike Fasterling-Nesselbosch, 2022
 # 
 msgid ""
@@ -1301,7 +1303,7 @@ msgstr "Erstellt am"
 #: model_terms:ir.ui.view,arch_db:sale.view_order_form
 #: model_terms:ir.ui.view,arch_db:sale.view_sale_advance_payment_inv
 msgid "Create Invoice"
-msgstr "Rechnung erzeugen"
+msgstr "Rechnung erstellen"
 
 #. module: sale
 #: model_terms:ir.actions.act_window,help:sale.action_invoice_salesteams
@@ -1328,12 +1330,12 @@ msgstr ""
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.view_sale_advance_payment_inv
 msgid "Create and View Invoice"
-msgstr "Erzeuge und zeige Rechnung an"
+msgstr "Rechnung erstellen und anzeigen"
 
 #. module: sale
 #: model:ir.actions.act_window,name:sale.action_view_sale_advance_payment_inv
 msgid "Create invoices"
-msgstr "Rechnung erzeugen"
+msgstr "Rechnungen erstellen"
 
 #. module: sale
 #: model_terms:ir.actions.act_window,help:sale.action_invoice_salesteams
@@ -1641,7 +1643,7 @@ msgstr "Beschreibung"
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.view_order_form
 msgid "Disc.%"
-msgstr "Disc.%"
+msgstr "Rabatt %"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_report__discount
@@ -2130,7 +2132,7 @@ msgstr "Erzeuge Rechnung"
 #: model:ir.model.fields,field_description:sale.field_sale_order__invoice_status
 #: model:ir.model.fields,field_description:sale.field_sale_order_line__invoice_status
 msgid "Invoice Status"
-msgstr "Status Rechnung"
+msgstr "Rechnungsstatus"
 
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.product_template_sale_form_view
@@ -2844,7 +2846,7 @@ msgstr "Aufträge"
 #: model:ir.ui.menu,name:sale.menu_sale_order_invoice
 #: model_terms:ir.ui.view,arch_db:sale.crm_team_view_kanban_dashboard
 msgid "Orders to Invoice"
-msgstr "Aufträge zur Rechnung"
+msgstr "Aufträge zur Abrechnung"
 
 #. module: sale
 #: model:ir.actions.act_window,name:sale.action_orders_upselling
@@ -4378,7 +4380,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale.view_order_form
 msgid "This will update all unit prices based on the currently set pricelist."
 msgstr ""
-"Dadurch werden alle Gerätepreise basierend auf der aktuell eingestellten "
+"Dadurch werden alle Einzelpreise basierend auf der aktuell eingestellten "
 "Preisliste aktualisiert."
 
 #. module: sale
@@ -4436,7 +4438,7 @@ msgstr "Heutige Aktivitäten"
 #: model_terms:ir.ui.view,arch_db:sale.portal_my_quotations
 #: model_terms:ir.ui.view,arch_db:sale.view_order_line_tree
 msgid "Total"
-msgstr "Total"
+msgstr "Gesamt"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_line__price_tax

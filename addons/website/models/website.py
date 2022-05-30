@@ -342,9 +342,12 @@ class Website(models.Model):
 
     @api.model
     def configurator_recommended_themes(self, industry_id, palette):
-        domain = [('name', '=like', 'theme%'), ('name', 'not in', ['theme_default', 'theme_common'])]
+        domain = [('name', '=like', 'theme%'), ('name', 'not in', ['theme_default', 'theme_common']), ('state', '!=', 'uninstallable')]
         client_themes = request.env['ir.module.module'].search(domain).mapped('name')
-        client_themes_img = dict([(t, http.addons_manifest[t].get('images_preview_theme', {})) for t in client_themes])
+        client_themes_img = dict([
+            (t, http.addons_manifest[t].get('images_preview_theme', {}))
+            for t in client_themes if t in http.addons_manifest
+        ])
         themes_suggested = self._website_api_rpc(
             '/api/website/2/configurator/recommended_themes/%s' % industry_id,
             {'client_themes': client_themes_img}
@@ -1637,7 +1640,7 @@ class Website(models.Model):
         :param limit: maximum number of records fetched per model to build the word list
         :return: yields words
         """
-        match_pattern = '\\w{%s,}' % min(4, len(search) - 3)
+        match_pattern = r'[\w-]{%s,}' % min(4, len(search) - 3)
         similarity_threshold = 0.3
         for search_detail in search_details:
             model_name, fields = search_detail['model'], search_detail['search_fields']
@@ -1753,7 +1756,7 @@ class Website(models.Model):
         :param limit: maximum number of records fetched per model to build the word list
         :return: yields words
         """
-        match_pattern = '\\w{%s,}' % min(4, len(search) - 3)
+        match_pattern = r'[\w-]{%s,}' % min(4, len(search) - 3)
         first = escape_psql(search[0])
         for search_detail in search_details:
             model_name, fields = search_detail['model'], search_detail['search_fields']

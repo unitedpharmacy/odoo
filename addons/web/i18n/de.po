@@ -435,6 +435,13 @@ msgstr "Zugang zu allen Enterprise-Apps"
 #. openerp-web
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #, python-format
+msgid "Action"
+msgstr "Aktion"
+
+#. module: web
+#. openerp-web
+#: code:addons/web/static/src/legacy/xml/base.xml:0
+#, python-format
 msgid "Action ID:"
 msgstr "Aktion ID:"
 
@@ -577,6 +584,13 @@ msgstr "Tag hinzufügen"
 #, python-format
 msgid "Add to Favorites"
 msgstr "Zu Favoriten hinzufügen"
+
+#. module: web
+#. openerp-web
+#: code:addons/web/static/src/legacy/xml/base.xml:0
+#, python-format
+msgid "Additional actions"
+msgstr ""
 
 #. module: web
 #. openerp-web
@@ -3435,6 +3449,13 @@ msgstr "Drucken"
 
 #. module: web
 #. openerp-web
+#: code:addons/web/static/src/legacy/xml/report.xml:0
+#, python-format
+msgid "Printing options"
+msgstr ""
+
+#. module: web
+#. openerp-web
 #: code:addons/web/static/src/legacy/js/fields/basic_fields.js:0
 #, python-format
 msgid "Priority"
@@ -4436,7 +4457,7 @@ msgstr "Zu viele Artikel zum Anzeigen."
 #: code:addons/web/static/src/views/pivot/pivot_model.js:0
 #, python-format
 msgid "Total"
-msgstr "Total"
+msgstr "Gesamt"
 
 #. module: web
 #. openerp-web
@@ -4906,6 +4927,12 @@ msgstr "Ja."
 #, python-format
 msgid "Yesterday"
 msgstr "Gestern"
+
+#. module: web
+#: code:addons/web/controllers/main.py:0
+#, python-format
+msgid "You are not allowed to upload an attachment here."
+msgstr ""
 
 #. module: web
 #. openerp-web

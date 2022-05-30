@@ -10,6 +10,7 @@ from odoo.exceptions import AccessError, UserError, ValidationError
 from odoo.osv import expression
 from odoo.tools import float_is_zero, html_keep_url, is_html_empty
 
+from odoo.addons.payment import utils as payment_utils
 
 class SaleOrder(models.Model):
     _name = "sale.order"
@@ -591,7 +592,7 @@ class SaleOrder(models.Model):
         self and self.activity_unlink(['sale.mail_act_sale_upsell'])
         for order in self:
             ref = "<a href='#' data-oe-model='%s' data-oe-id='%d'>%s</a>"
-            order_ref = ref % (order._name, order.id, order.name)
+            order_ref = ref % (order._name, order.id or order._origin.id, order.name)
             customer_ref = ref % (order.partner_id._name, order.partner_id.id, order.partner_id.display_name)
             order.activity_schedule(
                 'sale.mail_act_sale_upsell',
@@ -1056,10 +1057,16 @@ class SaleOrder(models.Model):
                 line.qty_to_invoice = 0
 
     def payment_action_capture(self):
-        self.authorized_transaction_ids._send_capture_request()
+        """ Capture all transactions linked to this sale order. """
+        payment_utils.check_rights_on_recordset(self)
+        # In sudo mode because we need to be able to read on acquirer fields.
+        self.authorized_transaction_ids.sudo().action_capture()
 
     def payment_action_void(self):
-        self.authorized_transaction_ids._send_void_request()
+        """ Void all transactions linked to this sale order. """
+        payment_utils.check_rights_on_recordset(self)
+        # In sudo mode because we need to be able to read on acquirer fields.
+        self.authorized_transaction_ids.sudo().action_void()
 
     def get_portal_last_transaction(self):
         self.ensure_one()
